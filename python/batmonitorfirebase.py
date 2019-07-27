@@ -54,13 +54,14 @@ def bat_monitor():
         elif charge > limit_min and show == 0:
             show_notify(charge, charging)
             show = 1
-        elif charge <= limit_min:
+        elif charge <= limit_min and charging == 0:
             # Se não quiser usar Firebase, comente esta linha
             info_network(1)
-            while (read_status_charging == 0):
-                show_notify_critical(read_status_perc)
+            while (read_status_charging() == 0):
+                show = 0
+                show_notify_critical(read_status_perc())
                 time.sleep(time_monitor_critical)
-            show_notify(read_status_perc, read_status_charging)
+            show_notify(read_status_perc(), read_status_charging())
         
         time.sleep(time_monitor)
 
@@ -74,7 +75,9 @@ def show_notify(perc, charg):
     subprocess.Popen(["/bin/bash", "-c", command])
 
 def show_notify_critical(perc):
-    command = "notify-send 'Bateria em nível critico com {0}'%".format(perc)
+    msg = "Bateria em nível crítica com {0}%".format(perc)
+    msg += "\nConectar carregador!"
+    command = "notify-send '{0}'".format(msg)
     subprocess.Popen(["/bin/bash", "-c", command])
 
 def show_notify_remove_charger():
