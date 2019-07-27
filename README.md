@@ -15,7 +15,8 @@
 
 ### esp/batmonitorfirebase.ino
 
-    Monitora o estado de uma variável no Firebase RealTime Database e controla um rele conforme este estado, ligando ou desligando o carregador do computador.
+    Monitora o estado de uma variável no Firebase RealTime Database e controla um rele
+    conforme este estado, ligando ou desligando o carregador do computador.
 
 ### service/batmonitor.service
 
