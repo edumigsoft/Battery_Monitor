@@ -17,6 +17,9 @@
 
     Monitora o estado de uma variável no Firebase RealTime Database e controla um rele
     conforme este estado, ligando ou desligando o carregador do computador.
+    Este código foi utlizado em ESP32.
+    Podendo ser expandido para outras funções devido a sua boa
+    capacidade de IOs e processamento.
 
 ### service/batmonitor.service
 
