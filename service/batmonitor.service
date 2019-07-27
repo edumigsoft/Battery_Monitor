@@ -1,0 +1,33 @@
+# batmonitor.service
+#
+# precisar estar em /etc/systemd/system
+# permissão para execução
+#
+# sudo systemctl daemon-reload
+# sudo systemctl enable batmonitor.service
+# sudo systemctl start batmonitor.service
+#
+# sudo systemctl stop batmonitor.service
+# sudo systemctl start batmonitor.service
+# sudo systemctl restart batmonitor.service
+#
+# Sempre que atualizar este arquivo e o que é chamado
+# fazer
+# sudo systemctl daemon-reload
+#
+
+[Unit]
+Description=Monitor de bateria
+After=multi-user.target network.target graphical.target
+
+[Service]
+#Type=notify
+Type=simple
+ExecStart=/usr/bin/python3 /path/to/file/batmonitorfirebase.py
+ExecStop=/bin/kill -TERM $MAINPID
+Restart=on-failure
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=multi-user.target
+Alias=batmonfire.service
